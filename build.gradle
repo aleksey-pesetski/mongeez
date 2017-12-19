@@ -1,0 +1,37 @@
+apply plugin: 'java'
+
+version = '0.9.7'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    manifest {
+        attributes 'Title': 'Mongeez',
+                   'Version': version,
+                   'Description': 'An opensource project for mongodb change management',
+                   'URL': 'http://github.com/secondmarket/mongeez'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.sonatype.oss', name: 'oss-parent', version: '9', ext: 'pom'
+
+    compile group: 'org.apache.commons', name: 'commons-digester3', version: '3.+'
+
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.3'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.3'
+
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.+'
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.+'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.+'
+
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.+'
+    testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.+'
+    testCompile group: 'log4j', name: 'log4j', version: '1.+'
+    testCompile group: 'org.testng', name: 'testng', version: '6.+'
+}
