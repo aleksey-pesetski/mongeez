@@ -18,7 +18,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.util.List;
 
 @JacksonXmlRootElement(localName = "changeFiles")
-public class ChangeFileSet {
+public class UpdateConfig {
     @JacksonXmlElementWrapper(localName = "file", useWrapping = false)
     private List<ChangeFile> changeFiles;
 
