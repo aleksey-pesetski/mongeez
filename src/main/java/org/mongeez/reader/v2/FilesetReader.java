@@ -1,7 +1,5 @@
 package org.mongeez.reader.v2;
 
-import org.springframework.core.io.Resource;
-
 import java.nio.file.Path;
 import java.util.List;
 
@@ -19,5 +17,5 @@ public interface FilesetReader {
      * 
      * @return
      */
-    List<Resource> readerFiles(Path configFile); 
+    List<Path> readerChangeFiles(Path configFile);
 }
