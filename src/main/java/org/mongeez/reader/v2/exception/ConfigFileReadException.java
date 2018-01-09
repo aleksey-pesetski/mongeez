@@ -1,7 +1,7 @@
 package org.mongeez.reader.v2.exception;
 
 /**
- * Exception throws when arising some problems with reading config file 
+ * Exception throws when arising some problems with reading config file 
  * 
  * @author Aleksey Pesetski
  */

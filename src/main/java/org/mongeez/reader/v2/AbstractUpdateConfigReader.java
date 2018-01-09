@@ -1,14 +1,12 @@
 package org.mongeez.reader.v2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringUtils;
-import org.mongeez.commands.v2.ChangeFile;
-import org.mongeez.commands.v2.ChangeFileSet;
+import org.mongeez.commands.v2.UpdateConfig;
+import org.mongeez.commands.v2.UpdateFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,9 +18,9 @@ import java.util.List;
  * 
  * @author Aleksey Pesetski
  */
-public abstract class AbstractFilesetReader<M extends ObjectMapper> implements FilesetReader {
+public abstract class AbstractUpdateConfigReader<M extends ObjectMapper> implements UpdateConfigReader {
 
-    private static final Logger logger = LoggerFactory.getLogger(AbstractFilesetReader.class);
+    private static final Logger logger = LoggerFactory.getLogger(AbstractUpdateConfigReader.class);
     
     @Override
     public List<Path> readerChangeFiles(Path configFile) {
@@ -32,16 +30,14 @@ public abstract class AbstractFilesetReader<M extends ObjectMapper> implements F
             try {
                 M objectMapper = getMapper();
                 configFile = configFile.normalize();
-                String configContent = StringUtils.toEncodedString(Files.readAllBytes(configFile), StandardCharsets.UTF_8);
-                ChangeFileSet changeFileSet = objectMapper.readValue(configContent, ChangeFileSet.class);
+                UpdateConfig changeFileSet = objectMapper.readValue(configFile.toFile(), UpdateConfig.class);
 
-                //Resource resourceConfigFile = new PathResource(configFile);
                 Path parentFolder = configFile.getParent();
-                for (ChangeFile changeFile: changeFileSet.getChangeFiles()) {
-                    String path = changeFile.getPath();
-                    Path pathToChangeFile = Paths.get(parentFolder.toString(), path);
-                    if (Files.exists(pathToChangeFile)) {
-                        result.add(pathToChangeFile);
+                for (UpdateFile updateFile: changeFileSet.getUpdateFiles()) {
+                    String path = updateFile.getPath();
+                    Path pathToUpdateFile = Paths.get(parentFolder.toString(), path);
+                    if (Files.exists(pathToUpdateFile)) {
+                        result.add(pathToUpdateFile);
                     } else {
                         logger.trace("Path to the update file '" + path + "' doesn't exist. Updates from this file will be skipped.");
                     }

@@ -20,13 +20,13 @@ import java.util.List;
 @JacksonXmlRootElement(localName = "changeFiles")
 public class UpdateConfig {
     @JacksonXmlElementWrapper(localName = "file", useWrapping = false)
-    private List<ChangeFile> changeFiles;
+    private List<UpdateFile> updateFiles;
 
-    public List<ChangeFile> getChangeFiles() {
-        return changeFiles;
+    public List<UpdateFile> getUpdateFiles() {
+        return updateFiles;
     }
 
-    public void setChangeFiles(List<ChangeFile> changeFiles) {
-        this.changeFiles = changeFiles;
+    public void setUpdateFiles(List<UpdateFile> updateFiles) {
+        this.updateFiles = updateFiles;
     }
 }

@@ -12,11 +12,13 @@
 
 package org.mongeez.commands.v2;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.mongeez.commands.Script;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@JacksonXmlRootElement(localName = "changeFiles")
 public class ChangeSet {
     private String changeId;
     private String author;

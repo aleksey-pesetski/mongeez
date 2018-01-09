@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author Aleksey Pesetski
  */
-public interface FilesetReader {
+public interface UpdateConfigReader {
 
     /**
      * Read updates from the config file.

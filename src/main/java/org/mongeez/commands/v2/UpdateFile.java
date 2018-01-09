@@ -14,7 +14,7 @@ package org.mongeez.commands.v2;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class ChangeFile {
+public class UpdateFile {
     @JacksonXmlProperty(localName = "path", isAttribute = true)
     public String path;
 
