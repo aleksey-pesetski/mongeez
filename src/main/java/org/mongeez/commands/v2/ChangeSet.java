@@ -12,23 +12,20 @@
 
 package org.mongeez.commands.v2;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.mongeez.commands.Script;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@JacksonXmlRootElement(localName = "changeFiles")
+@JacksonXmlRootElement(localName = "mongoChangeLog")
 public class ChangeSet {
+    @JacksonXmlProperty(localName = "changeId", isAttribute = true)
     private String changeId;
+    @JacksonXmlProperty(localName = "author", isAttribute = true)
     private String author;
-    private String file;
-    private String resourcePath;
-    private String contextsStr;
-    private ArrayList<String> contexts;
-
-    private boolean failOnError = true;
-    private boolean runAlways;
+    private String script;
 
     private List<Script> commands = new ArrayList<Script>();
 
@@ -48,75 +45,11 @@ public class ChangeSet {
         this.author = author;
     }
 
-    public boolean isRunAlways() {
-        return runAlways;
+    public String getScript() {
+        return script;
     }
 
-    public void setRunAlways(boolean runAlways) {
-        this.runAlways = runAlways;
-    }
-
-    public boolean isFailOnError() {
-        return failOnError;
-    }
-
-    public void setFailOnError(boolean failOnError) {
-        this.failOnError = failOnError;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
-    public String getResourcePath() {
-        return resourcePath;
-    }
-
-    public void setResourcePath(String resourcePath) {
-        this.resourcePath = resourcePath;
-    }
-
-    public void add(Script command) {
-        commands.add(command);
-    }
-
-    public List<Script> getCommands() {
-        return commands;
-    }
-    
-    public String getContexts()
-    {
-        if (contextsStr == null)
-        {
-            contextsStr = "";
-        }
-
-        return contextsStr;
-    }
-
-    public void setContexts(String contextsStr) {
-        this.contextsStr = contextsStr;
-        contexts = null;
-    }
-
-    public boolean canBeAppliedInContext(String context) {
-        if (contextsStr == null) {
-            return true;
-        }
-
-        if (contexts == null) {
-            contexts = new ArrayList<String>();
-            for (String requiredContext : contextsStr.split(",")) {
-                String cleanedContext = requiredContext.toLowerCase().trim();
-                if (cleanedContext.length() > 0) {
-                    contexts.add(cleanedContext);
-                }
-            }
-        }
-        return contexts.isEmpty() || (context != null && contexts.contains(context.toLowerCase().trim()));
+    public void setScript(String script) {
+        this.script = script;
     }
 }

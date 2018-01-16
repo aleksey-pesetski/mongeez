@@ -18,11 +18,22 @@ public class UpdateFile {
     @JacksonXmlProperty(localName = "path", isAttribute = true)
     public String path;
 
+    @JacksonXmlProperty(localName = "fileType", isAttribute = true)
+    public String fileType;
+    
     public String getPath() {
         return path;
     }
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 }

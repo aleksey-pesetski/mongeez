@@ -9,8 +9,9 @@ import org.mongeez.reader.v2.AbstractUpdateConfigReader;
  * @author Aleksey Pesetski
  */
 public class YAMLUpdateConfigReader extends AbstractUpdateConfigReader<YAMLMapper> {
+
     @Override
-    protected YAMLMapper getMapper() {
-        return new YAMLMapper();
+    protected Class<YAMLMapper> getMapper() {
+        return YAMLMapper.class;
     }
 }

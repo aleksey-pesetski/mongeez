@@ -1,18 +1,16 @@
 package org.mongeez.reader.v2;
 
-import org.mongeez.commands.v2.UpdateConfig;
+import org.mongeez.commands.v2.ChangeSet;
 
-import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * Base interface for define reader.
  * 
  * @author Aleksey Pesetski
  */
-public interface UpdateConfigReader<T, S> {
+public interface UpdateConfigReader {
 
     /**
      * Read updates from the config file.
@@ -21,5 +19,5 @@ public interface UpdateConfigReader<T, S> {
      * 
      * @return
      */
-    List<Path> readerChangeFiles(Path configFile, Function<T, S> ... additionalFunction);
+    List<ChangeSet> readerChangeFiles(Path configFile);
 }
